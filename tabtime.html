@@ -1,0 +1,139 @@
+
+<html>
+<style>
+body {
+  background-image: url("http://www.valleyhealthcolumbus.com/wp-content/uploads/2015/08/1-1278141033-bg-blue-white-gradient.jpeg");
+  background-repeat: repeat-x;
+}
+</style>
+<style>
+	img{
+		margin-left:200;
+	}
+	#tim{
+		margin-left:75;
+	}
+</style>
+<h1>Tables of Time</h1>
+	
+	
+<h3>1989 - Time Berners-Lee invents the WWW & HTML</h3>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Tim_Berners-Lee.jpg" width="150px"/>
+
+<table border="1">
+  <th>Inventer</th><th>Technology</th>
+  <tr>
+     <td>Tim Berners-Lee</td><td>WWW & HTML</td>
+  </tr>
+  <tr>
+     <td>Håkon Wium Lie</td><td>CSS</td>
+  </tr>
+  <tr>
+     <td>Brenden Eich</td><td>Javascript</td>
+  </tr>
+</table>
+
+<h3>1996 - Håkon Wium Lie invents CSS</h3>
+
+<img src="http://i.iinfo.cz/urs/hakon_wium_lie-121043715851298.jpg" width="150px"/>
+<style>
+
+#inventors {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin: left;
+}
+
+#inventors td, #inventors th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#inventors tr:nth-child(even){background-color: #f2f2f2;}
+
+#inventors tr:hover {background-color: #ddd;}
+
+#inventors th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
+
+<table id="inventors" border="1">
+  <th>Inventor</th><th>Technology</th>
+  <tr>
+     <td>Tim Berners-Lee</td><td>WWW & HTML</td>
+  </tr>
+  <tr>
+     <td>Håkon Wium Lie</td><td>CSS</td>
+  </tr>
+  <tr>
+     <td>Brenden Eich</td><td>Javascript</td>
+  </tr>
+</table>
+
+
+<h3>1995 - Brenden Eich invents JavaScript</h3>
+<a href="https://en.wikipedia.org/wiki/Brendan_Eich">Click here for more info on Brenden</a>
+
+<div id="printmytable"></div>
+<img src="http://www.nndb.com/people/095/000031002/brendan-eich-2-sized.jpg" width="150px">
+<style>
+	#jstab{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin: left;
+}
+  #jstab td, #jstab th{
+	  border: 1px solid #ddd;
+	  padding: 8px;
+  }
+  #jstab tr:nth-child(even){background-color: #f2f2f2;}
+  #jstab tr:hover {background-color: #ddd;}
+  #jstab th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+<script>
+
+function buildmyTable() {
+
+  var inventors = [{name:"Tim Berners-Lee",invention:"WWW & HTML", time:"1989"},{name:"Haken Wium Lie",invention:"CSS",time:"1996"},{name:"Brendan Eich",invention:"Javascript", time:"1995"}];
+
+  // build a string variable with all the table code and data
+  var mytable = "<table id='jstab' border='1'>";
+  mytable = mytable + "<th>Inventor</th><th>Invention</th><th>Time invented</th>";
+
+  // loop through data table to add data
+  for (i = 0; i < inventors.length; i = i + 1) {
+    mytable = mytable + "<tr>";
+    mytable = mytable + "<td>" + inventors[i].name + "</td><td>" + inventors[i].invention + "</td><td>"+ inventors[i].time + "</td>" ;
+    mytable = mytable + "</tr>";
+  }
+
+  mytable = mytable + "</table>";
+
+  // get the div and substitute mytable data for it
+  var placetoprint = document.getElementById("printmytable");
+  placetoprint.innerHTML = mytable;
+
+}
+
+buildmyTable()
+
+</script>
+  
+
+</html>
