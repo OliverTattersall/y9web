@@ -1,0 +1,36 @@
+<html>
+    <style>
+        #p{
+            font-size: 3em;
+            text-shadow: 4px 1px grey; 
+        }
+    
+    </style>
+    <p id="p">This is the child mortality per year in Afganistan</p>
+    <p id="p1"></p>
+    <!-- import data-->
+    <script src="realdata.json"></script>
+    
+    
+    <script>
+        //alert(data[1].dims.COUNTRY);
+        
+        function changep(){
+            i=0;
+            list=[]
+            mystr="<ul>"
+            while (i <= 81 ){
+                
+                mystr=mystr+"<li>"+data[i].dims.YEAR+": " +data[i].Value
+                //list.push(" "+data[k].dims.YEAR+ ": "+data[k].Value*1000)
+                i=i+3
+                
+            }
+            mystr=mystr+"</ul>"
+            document.getElementById("p1").innerHTML=mystr
+            //document.getElementById("p1").innerHTML=list
+            console.log(mystr)
+        }
+        changep()
+    </script>
+</html>

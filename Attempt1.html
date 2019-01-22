@@ -1,0 +1,43 @@
+<html>
+    <h1> This is the Child Mortality(under 5) in 2017</h1>
+    <!-- import your data -->
+    <script src="realdata.json"></script>
+    
+    <canvas id="myCanvas" width="2000" height="5000">
+      Your browser does not support the canvas element.
+    </canvas>
+    
+    <script>
+        
+        var canvas = document.getElementById("myCanvas");
+	    var ctx = canvas.getContext("2d");
+        ctx.fillStyle="red";
+        ctx.fillRect(280,5,15,15)
+        ctx.fillStyle="black";
+        ctx.fillText("under 5 deaths", 305,15)
+        ctx.fillStyle="green";
+        ctx.fillRect(280,25,15,15)
+        ctx.fillStyle="black";
+        ctx.fillText("neonatal deaths",305,35)
+        j=2;
+        yvalue = 0
+        for (i = 0; i<data.length; i = i + 84) {
+            cname = data[i].dims.COUNTRY;
+            numdead = parseInt(data[i].Value);
+            num=parseInt(data[j].Value);
+        
+            ctx.fillStyle = "red";
+	        ctx.fillRect(0,yvalue,numdead,10);
+            ctx.fillStyle="green";
+            ctx.fillRect(0,yvalue+10,num, 10)
+            ctx.fillStyle = "black";
+            ctx.fillText(cname,10,yvalue + 28);
+            ctx.fillText(numdead*1000 + " deaths",10+numdead, yvalue+9)
+            yvalue = yvalue + 27;
+            j=j+84;
+        }
+    
+    </script>
+    
+    
+</html>

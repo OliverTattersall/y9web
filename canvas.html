@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+    
+    <style>
+        html{
+            background-color: dodgerblue;
+            
+        }
+        #c{
+            
+            width:90%;
+            height:700px;
+            background-color:DodgerBlue;
+        }#p{
+            font-size: 3em;
+        }
+    
+    </style>
+    <p id="p">This is the child mortality per year in Afganistan</p>
+    <canvas id="c">
+    </canvas>
+    <script>
+        var c = document.getElementById("c");
+        var ctx = c.getContext("2d");
+        
+        //ctx.moveTo(0, 0);
+        //ctx.lineTo(800, 400);
+        
+        ctx.font = "20px Arial";
+        ctx.fillText("The year", 60, 107);
+        ctx.rect(30,10,160,70)
+        ctx.stroke();
+    </script>
+
+</html>
