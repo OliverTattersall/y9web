@@ -1,0 +1,216 @@
+<html>
+    <head>
+        <style>
+            #canvas{
+                width:100%;
+                height:250px;
+            }.button{
+                background-color: #1ad1ff;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }select option{
+                margin: 40px;
+                background: rgba(0, 0, 0, 0.3);
+                color: "blue";
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+            }body{
+                background-color: azure;
+            }
+        
+        </style>
+    </head>
+    <body>
+        
+        <a href="frontpage.html" class="button">Back to Home Page</a>
+        <h3> Pick 2 Countries</h3>
+        <select id="po">
+            <option value="pick">Pick a Country</option>
+        </select>
+        
+        <select id ="select">
+            <option value="pick">Pick a Country</option>
+        </select>
+        
+        <br>
+        <canvas id="canvas"></canvas>
+        <br>
+        <button id="button" type="button" onclick="Gdata()">Generate Data</button>
+        
+                
+        <p id="p"> </p>
+        <script src="realdata.json"></script>
+        
+        <script>
+            
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            
+            
+            function Gdata(){
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                canvas.width=canvas.getBoundingClientRect().width;
+                canvas.height=canvas.getBoundingClientRect().height;
+                
+                var option = document.getElementById("po");
+                var country=option.value
+        
+                
+                
+                var option2 = document.getElementById("select");
+                var country2=option2.value
+                
+                for(i=0; i<data.length; i++){
+                    if(data[i].dims.COUNTRY==country){
+                        var child=data[i].Value
+                        var infant=data[i+1].Value
+                        var neonatal=data[i+2].Value
+                        break
+                    }
+                
+                }
+                for(i=0; i<data.length; i++){
+                    if(data[i].dims.COUNTRY==country2){
+                        var child2=data[i].Value
+                        var infant2=data[i+1].Value
+                        var neonatal2=data[i+2].Value
+                        break
+                    }
+                
+                }
+                child=parseInt(child)
+                infant=parseInt(infant)
+                neonatal=parseInt(neonatal)
+                child2=parseInt(child2)
+                infant2=parseInt(infant2)
+                neonatal2=parseInt(neonatal2)
+                
+                
+                if(isNaN(child)==true){
+                    child=1;
+                }else{
+                    child=child;
+                }
+                if(isNaN(infant)==true){
+                    infant=1;
+                }else{
+                    infant=infant;
+                }if(isNaN(neonatal)==true){
+                    neonatal=1;
+                }else{
+                    neonatal=neonatal; 
+                }
+                
+                
+                if(isNaN(child2)==true){
+                    child2=1;
+                }else{
+                    child2=child2;
+                }
+                if(isNaN(infant2)==true){
+                    infant2=1;
+                }else{
+                    infant2=infant2;
+                }if(isNaN(neonatal2)==true){
+                    neonatal2=1;
+                }else{
+                    neonatal2=neonatal2;   
+                }
+                
+                
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0,0,500,300);
+                
+                
+                ctx.fillStyle="black";
+                ctx.font="20px Arial";
+                ctx.fillText("Child Deaths",0,18);
+                
+                
+                async function childbar() {
+                    for(i=1;i<201;i++){
+                        ctx.fillStyle = "red";
+	                    ctx.fillRect(0,30,child/200*i,15);
+                        ctx.fillStyle="blue"
+                        ctx.fillRect(0,45,child2/200*i,15)
+                        await sleep(30);
+                    }
+                }childbar();
+                
+                
+                ctx.fillStyle="black";
+                ctx.font="20px Arial";
+                ctx.fillText("Infant Deaths",0,98);
+                
+                
+                async function infantbar() {
+                    for(i=1;i<201;i++){
+                        ctx.fillStyle = "red";
+	                    ctx.fillRect(0,110,infant/200*i,15);
+                        ctx.fillStyle="blue";
+                        ctx.fillRect(0,125,infant2/200*i,15);
+                        await sleep(30);
+                    }
+                }infantbar();
+                
+                
+                ctx.fillStyle="black";
+                ctx.font="20px Arial";
+                ctx.fillText("Neonatal Deaths(first 28 days)",0,178);
+                
+                async function neonatalbar() {
+                    for(i=1;i<201;i++){
+                        ctx.fillStyle = "red";
+	                    ctx.fillRect(0,190,neonatal/200*i,15);
+                        ctx.fillStyle="blue";
+                        ctx.fillRect(0,205,neonatal2/200*i,15);
+                        await sleep(30);
+                    }
+                }neonatalbar();
+                
+                if(child==1000){
+                    child="<1000";
+                }else{
+                    child*1000;
+                }
+                async function texter(){
+                    await sleep(2400)
+                    ctx.fillStyle="black";
+                    ctx.font="10px Arial";
+                    ctx.fillText((child)*1000 + " deaths",child + 5, 40);
+                    ctx.fillText((child2)*1000 + " deaths",child2 + 5, 55);
+                    ctx.fillText((infant)*1000 + " deaths",infant + 5, 120);
+                    ctx.fillText((infant2)*1000 + " deaths",infant2 + 5, 135);
+                    ctx.fillText((neonatal)*1000 + " deaths",neonatal + 5, 200);
+                    ctx.fillText((neonatal2)*1000 + " deaths",neonatal2 + 5, 215);
+                }texter()
+            }
+            
+        </script>
+        
+        
+        <script>
+                i=0;
+         str="<option value='pick'>Pick A Country</option>";
+        while(i<data.length){
+            var v=data[i].dims.COUNTRY;
+            str=str+ "<option value=" + v + ">" + v +"</option>" 
+            i=i+84;
+        }
+        document.getElementById("po").innerHTML=str
+        document.getElementById("select").innerHTML=str
+        
+        
+        
+        </script>
+    </body>
+    
+</html>
