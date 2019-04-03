@@ -1,10 +1,14 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2014/1-earth.jpg" type="image/gif" sizes="16x16">
         <style>
             #canvas{
                 width:100%;
                 height:250px;
-            }.button{
+                background-color: azure;
+            }#button{
                 background-color: #1ad1ff;
                 border: none;
                 color: white;
@@ -15,20 +19,57 @@
                 font-size: 16px;
                 margin: 4px 2px;
                 cursor: pointer;
-            }select option{
-                margin: 40px;
-                background: rgba(0, 0, 0, 0.3);
-                color: "blue";
-                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
             }body{
                 background-color: azure;
+            }#po{
+                background-color: red;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+
+                
+            }#select{
+                background-color: blue;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }.icon-bar { 
+                width: 100%;
+                height: 80px;
+                background-color: #555;
+                overflow: auto;
+            } .icon-bar a {
+                float: left;
+                width: 50%;
+                height:80px;
+                text-align: center;
+                padding: 12px 0;
+                transition: all 0.1s ease;
+                color: white;
+                font-size: 30px;
+            }.icon-bar a:hover {
+                background-color: #324;
+            }.active {
+                background-color: #4CAF50;
+            }.active1{
+                background-color: blue;
+            }h3{
+                font-family: "Times New Roman";
+                font-size: 40px;
             }
         
         </style>
     </head>
     <body>
+        <div class="icon-bar">
+            <a class="active" href="frontpage.html"><i class="fa fa-home" style="font-size:60px"></i></a>
+            <a class="active1" href="datapage.html"><i class="fa fa-info" style="font-size:60px"></i></a>
+        </div>
         
-        <a href="frontpage.html" class="button">Back to Home Page</a>
         <h3> Pick 2 Countries</h3>
         <select id="po">
             <option value="pick">Pick a Country</option>
@@ -62,11 +103,13 @@
                 
                 var option = document.getElementById("po");
                 var country=option.value
-        
+                
                 
                 
                 var option2 = document.getElementById("select");
                 var country2=option2.value
+                
+                
                 
                 for(i=0; i<data.length; i++){
                     if(data[i].dims.COUNTRY==country){
@@ -79,7 +122,7 @@
                 }
                 for(i=0; i<data.length; i++){
                     if(data[i].dims.COUNTRY==country2){
-                        var child2=data[i].Value
+                        var child2=data[i].Value;
                         var infant2=data[i+1].Value
                         var neonatal2=data[i+2].Value
                         break
@@ -92,6 +135,7 @@
                 child2=parseInt(child2)
                 infant2=parseInt(infant2)
                 neonatal2=parseInt(neonatal2)
+                
                 
                 
                 if(isNaN(child)==true){
@@ -126,7 +170,7 @@
                 }
                 
                 
-                ctx.fillStyle = 'white';
+                ctx.fillStyle = 'azure';
                 ctx.fillRect(0,0,500,300);
                 
                 
@@ -136,12 +180,12 @@
                 
                 
                 async function childbar() {
-                    for(i=1;i<201;i++){
+                    for(i=1;i<801;i++){
                         ctx.fillStyle = "red";
-	                    ctx.fillRect(0,30,child/200*i,15);
+	                    ctx.fillRect(0,30,child/800*i,15);
                         ctx.fillStyle="blue"
-                        ctx.fillRect(0,45,child2/200*i,15)
-                        await sleep(30);
+                        ctx.fillRect(0,45,child2/800*i,15)
+                        await sleep(5);
                     }
                 }childbar();
                 
@@ -152,12 +196,12 @@
                 
                 
                 async function infantbar() {
-                    for(i=1;i<201;i++){
+                    for(i=1;i<801;i++){
                         ctx.fillStyle = "red";
-	                    ctx.fillRect(0,110,infant/200*i,15);
+	                    ctx.fillRect(0,110,infant/800*i,15);
                         ctx.fillStyle="blue";
-                        ctx.fillRect(0,125,infant2/200*i,15);
-                        await sleep(30);
+                        ctx.fillRect(0,125,infant2/800*i,15);
+                        await sleep(5);
                     }
                 }infantbar();
                 
@@ -167,12 +211,12 @@
                 ctx.fillText("Neonatal Deaths(first 28 days)",0,178);
                 
                 async function neonatalbar() {
-                    for(i=1;i<201;i++){
+                    for(i=1;i<801;i++){
                         ctx.fillStyle = "red";
-	                    ctx.fillRect(0,190,neonatal/200*i,15);
+	                    ctx.fillRect(0,190,neonatal/800*i,15);
                         ctx.fillStyle="blue";
-                        ctx.fillRect(0,205,neonatal2/200*i,15);
-                        await sleep(30);
+                        ctx.fillRect(0,205,neonatal2/800*i,15);
+                        await sleep(5);
                     }
                 }neonatalbar();
                 
@@ -182,7 +226,7 @@
                     child*1000;
                 }
                 async function texter(){
-                    await sleep(2400)
+                    await sleep(1720)
                     ctx.fillStyle="black";
                     ctx.font="10px Arial";
                     ctx.fillText((child)*1000 + " deaths",child + 5, 40);
@@ -202,12 +246,12 @@
          str="<option value='pick'>Pick A Country</option>";
         while(i<data.length){
             var v=data[i].dims.COUNTRY;
-            str=str+ "<option value=" + v + ">" + v +"</option>" 
+            str=str+ "<option value=" + "'"+ v + "'"+">" + v +"</option>" 
             i=i+84;
         }
         document.getElementById("po").innerHTML=str
         document.getElementById("select").innerHTML=str
-        
+        console.log(data[41*84].dims.COUNTRY)
         
         
         </script>
